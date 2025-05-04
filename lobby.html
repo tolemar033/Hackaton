@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aventuras con Skyscanner</title>
+  <style>
+    body {
+      background-image: url('ski4.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100vh;
+      color: white;
+      position: relative;
+      padding: 20px;
+    }
+
+    .main-container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .lobby-container {
+      flex: 0 0 70%;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 40px;
+      font-size: 36px;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .category {
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(145deg, #1872e9, #1872e9);
+      color: white;
+      border-radius: 50%;
+      font-size: 18px;
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      padding: 10px;
+      text-align: center;
+    }
+
+    .category:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .category:active {
+      transform: scale(0.95);
+    }
+
+    .category i {
+      font-size: 40px;
+    }
+
+    .category div {
+      margin-top: 10px;
+    }
+
+    /* Panel de scroll limitado */
+    .scroll-panel {
+      flex: 0 0 30%;
+      height: 400px; /* Altura fija para el panel de scroll */
+      overflow-y: auto; /* Habilitar desplazamiento vertical */
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .scroll-panel h3 {
+      color: white;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .travel-item {
+      background-color: rgba(255, 255, 255, 0.2);
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 6px;
+      color: white;
+      text-align: center;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    /* Estilo para los botones "Unirme" */
+    .travel-item button {
+      padding: 12px;
+      background: linear-gradient(145deg, #1872e9, #1872e9);
+      color: white;
+      border: none;
+      border-radius: 12px; /* Esquinas redondeadas (pero no completamente circulares) */
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s;
+      width: 100px; /* Ajuste del tamaño */
+      margin-top: 10px;
+    }
+
+    .travel-item button:hover {
+      background-color: #0056b3;
+    }
+
+    .private-code {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .private-code input {
+      padding: 8px;
+      width: 60%;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      background-color: #f9f9f9;
+    }
+
+    .private-code button {
+      padding: 12px;
+      background: linear-gradient(145deg, #1872e9, #1872e9);
+      color: white;
+      border: none;
+      border-radius: 12px; /* Esquinas redondeadas */
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s;
+      width: 100px; /* Ajuste del tamaño */
+    }
+
+    .private-code button:hover {
+      background-color: #0056b3;
+    }
+
+    .logo2 {
+      position: absolute;
+      bottom: 10px;
+      right: 20px;
+      width: 200px;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    /* Botón redondo en la esquina superior izquierda */
+    .profile-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 50px;
+      height: 50px;
+      background-color: #1872e9;
+      color: white;
+      border-radius: 50%;
+      font-size: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .profile-btn:hover {
+      background-color: #0056b3;
+    }
+
+  </style> 
+</head>
+<body>
+
+  <!-- Botón redondo para ir a la página de perfil -->
+  <button class="profile-btn" onclick="window.location.href='perfil.html';">👤</button>
+
+  <div class="main-container">
+    <!-- Contenedor del lobby -->
+    <div class="lobby-container">
+      <h1>Aventures amb Skyscanner</h1>
+
+      <div class="categories">
+        <div class="category" onclick="window.location.href='crearviatge.html';">
+          <i>✈️</i>
+          <div>Crea un viatge</div>
+        </div>
+
+        <div class="category" onclick="window.location.href='meusviatges.html';">
+          <i>🗺️</i>
+          <div>Els teus viatges</div>
+        </div>
+      </div>
+
+      <!-- Campo para ingresar código de viaje privado -->
+      <div class="private-code">
+        <input type="text" id="privateCodeInput" placeholder="Introduce el código de viaje privado">
+        <button onclick="joinPrivateTrip()">Unirse</button>
+      </div>
+    </div>
+
+    <!-- Panel de scroll con los viajes públicos disponibles -->
+    <div class="scroll-panel" id="travelPanel">
+      <h3>Viatges Públics Disponibles</h3>
+      <!-- Aquí se agregarán los viajes dinámicamente -->
+    </div>
+  </div>
+
+  <script>
+    function animateClick(element) {
+      element.style.transform = "scale(0.95)";
+      setTimeout(() => {
+        element.style.transform = "scale(1)";
+      }, 100);
+    }
+
+    // Función para manejar la acción de unirse a un viaje privado
+    function joinPrivateTrip() {
+      const privateCode = document.getElementById("privateCodeInput").value;
+
+      if (privateCode) {
+        alert(`Unido al viaje privado con el código: ${privateCode}`);
+        // Aquí se puede agregar la lógica para unirse al viaje privado
+      } else {
+        alert("Por favor, ingresa un código de viaje privado.");
+      }
+    }
+
+    // Función para simular una API y agregar viajes dinámicamente
+    function loadPublicTrips() {
+      const trips = [
+        { name: "Dones al poder!", registered: 10, max: 20, startDate: "2023-10-01", endDate: "2023-10-10" },
+        { name: "Viatge a París", registered: 5, max: 10, startDate: "2023-11-01", endDate: "2023-11-05" },
+        { name: "Acampada als Alps", registered: 15, max: 30, startDate: "2023-12-15", endDate: "2023-12-22" },
+        { name: "Qui vol una mica de trekking?", registered: 8, max: 20, startDate: "2023-09-20", endDate: "2023-09-25" },
+        { name: "Anem d'esquiada?", registered: 12, max: 25, startDate: "2023-10-05", endDate: "2023-10-12" }
+      ];
+
+      const travelPanel = document.getElementById("travelPanel");
+
+      trips.forEach(trip => {
+        const travelItem = document.createElement('div');
+        travelItem.classList.add('travel-item');
+        travelItem.innerHTML = `
+          <strong>${trip.name}</strong>
+          <p><strong>Inscritos:</strong> ${trip.registered} / ${trip.max}</p>
+          <p><strong>Fechas:</strong> ${trip.startDate} - ${trip.endDate}</p>
+          <button onclick="joinTrip('${trip.name}')">Unirme</button>
+        `;
+        travelPanel.appendChild(travelItem);
+      });
+    }
+
+    // Función para unirse a un viaje público
+    function joinTrip(tripName) {
+      alert(`Te has unido al viaje: ${tripName}`);
+      // Aquí se puede agregar la lógica para unirse a un viaje
+    }
+
+    // Cargar los viajes al cargar la página
+    window.onload = loadPublicTrips;
+  </script>
+
+</body>
+</html>

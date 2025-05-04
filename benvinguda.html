@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bienvenida</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('ski4.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    .welcome-box {
+      background-color: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 500px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .welcome-box h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .welcome-box p {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .join-button {
+      background-color: #1872e9;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .join-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+    .logo2 {
+      position: absolute;
+      bottom: 10px;
+      right: 20px;
+      width: 200px; /* Ajusta el tamaño del logo */
+      height: auto;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+    <img src="inlinewhite.svg" alt="Skyscanner2 Logo" class="logo2">
+    <div class="welcome-box">
+      <h1>Benvingut a la nostra aventura!</h1>
+      <p style="text-align: justify;">
+        Estàs cansat de discutir amb els teus amics sobre <strong>on anar de vacances</strong>? No et preocupis més!
+        A la nostra plataforma podràs <strong>crear un grup de viatge</strong>, convidar als teus amics i deixar que el sistema us ajudi a descobrir quin és el <strong>destí perfecte per a tots</strong>.
+      </p>
+      <p style="text-align: justify;">
+        Només heu de respondre unes <strong>preguntes senzilles</strong>, i us proposarem les opcions que millor s’adapten als vostres <strong>gustos</strong> i <strong>pressupost</strong>.
+      </p>
+      <p style="text-align: justify;">
+        Explora, somia i planifica sense complicacions. <strong>La teva propera aventura comença aquí.</strong>
+      </p>
+      <button class="join-button" onclick="window.location.href='index.html';">Uneix-te!</button>
+    </div>
+</body>
+</html>

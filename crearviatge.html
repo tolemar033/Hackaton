@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Viatge</title>
+  <style>
+    body {
+        background-image: url('cel2.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        font-family: 'Arial';
+        background-color: #f2f4f8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        color: #333;
+    }
+
+    .viatge-container {
+      background-color: #ffffff;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 350px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    h2 {
+      text-align: center;
+      color: #000000;
+      margin-bottom: 20px;
+      font-size: 26px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 16px;
+      font-weight: 600;
+      color: #000000;
+    }
+
+    span {
+      font-size: 16px;
+      display: block;
+      margin-bottom: 10px;
+      color: #000000;
+      transition: color 0.3s;
+    }
+
+    input {
+      width: 93%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-top: 8px;
+      color: #555;
+      background-color: #f9f9f9;
+      transition: border 0.3s ease, background-color 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #007BFF;
+      background-color: #f1fdf3;
+    }
+
+    button {
+      padding: 12px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+      margin-top: 20px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .buttons button {
+      width: 48%;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    .buttons button:focus {
+        outline: none;
+    }
+
+    .logo2 {
+      position: absolute;
+      bottom: 10px;
+      right: 20px;
+      width: 200px;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 14px;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+  </style>
+</head>
+<body>
+    
+  <!-- Logo de Skyscanner en la esquina inferior derecha -->
+  <img src="inlinewhite.svg" alt="Skyscanner2 Logo" class="logo2">
+
+  <div class="viatge-container">
+    <h2>Crear Viatge</h2>
+    <form id="viatgeForm">
+      <div class="form-group">
+        <label for="nom">Nom del Viatge:</label>
+        <input type="text" id="nomInput" placeholder="Introdueix el nom del viatge">
+      </div>
+
+      <div class="form-group">
+        <label for="persones">Quantitat de persones:</label>
+        <input type="number" id="personesInput" placeholder="Nombre de persones" min="1">
+      </div>
+
+      <div class="form-group">
+        <label for="dataInici">Dia d'inici:</label>
+        <input type="date" id="dataIniciInput" required>
+      </div>
+
+      <div class="form-group">
+        <label for="dataFi">Dia de fi:</label>
+        <input type="date" id="dataFiInput" required>
+      </div>
+
+      <button type="button" id="guardarBtn">Desa Viatge</button>
+      <div class="error-message" id="errorMessage"></div>
+    </form>
+  </div>
+
+  <script>
+    // Obtenir les dates mínimes i màximes
+    const today = new Date().toISOString().split("T")[0]; // Fecha actual
+    const fiveYearsLater = new Date();
+    fiveYearsLater.setFullYear(fiveYearsLater.getFullYear() + 5); // 5 anys endavant
+    const fiveYearsLaterDate = fiveYearsLater.toISOString().split("T")[0];
+
+    // Aplicar les dates mínimes i màximes als inputs
+    document.getElementById("dataIniciInput").setAttribute("min", today);
+    document.getElementById("dataIniciInput").setAttribute("max", fiveYearsLaterDate);
+    document.getElementById("dataFiInput").setAttribute("min", today);
+    document.getElementById("dataFiInput").setAttribute("max", fiveYearsLaterDate);
+
+    document.getElementById("guardarBtn").addEventListener("click", function() {
+      // Obtenir els valors dels camps
+      const nom = document.getElementById("nomInput").value;
+      const persones = document.getElementById("personesInput").value;
+      const dataInici = document.getElementById("dataIniciInput").value;
+      const dataFi = document.getElementById("dataFiInput").value;
+
+      // Verificar que tots els camps estan omplerts
+      if (!nom || !persones || !dataInici || !dataFi) {
+        alert("Tots els camps són obligatoris!");
+        return;
+      }
+      // Lista de palabras prohibidas
+    const forbiddenWords = ["puta", "cabron", "subnormal", "gilipollas", "asshole", "bitch"];  
+
+      // Verificar que el nom no conté paraules prohibides
+      for (let word of forbiddenWords) {
+        if (nom.toLowerCase().includes(word)) {
+          document.getElementById("errorMessage").textContent = "El nom del viatge conté paraules prohibides.";
+          return;
+        }
+      }
+
+      // Validar que la data d'inici no sigui més petita que la data d'avui
+      if (dataInici < today) {
+        document.getElementById("errorMessage").textContent = "La data d'inici no pot ser anterior a avui.";
+        return;
+      }
+
+      // Validar que la data de fi no sigui més petita que la data d'inici
+      if (dataFi < dataInici) {
+        document.getElementById("errorMessage").textContent = "La data de fi no pot ser anterior a la data d'inici.";
+        return;
+      }
+
+      if (dataFi > fiveYearsLaterDate) {
+        document.getElementById("errorMessage").textContent = "La data de fi no pot ser més tard que d'aquí 5 anys";
+        return;
+      }
+
+      if (persones > 15) {
+        document.getElementById("errorMessage").textContent = "La quantitat de persones no pot ser més gran que 15.";
+        return;
+      }
+
+      // Mostrar els valors guardats
+      alert(Viatge creat!\nNom: ${nom}\nPersones: ${persones}\nInici: ${dataInici}\nFi: ${dataFi});
+
+      // Netegem els camps després de desar
+      document.getElementById("viatgeForm").reset();
+      document.getElementById("errorMessage").textContent = "";  // Reset error message
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Els meus viatges</title>
+  <style>
+    body {
+      background-image: url('cel2.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100vh;
+      color: black;
+      position: relative;
+      padding: 20px;
+    }
+
+    .my-trips-container {
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 350px;
+      border-radius: 10px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .trip-item {
+      background-color: rgba(255, 255, 255, 0.3);
+      margin-bottom: 15px;
+      padding: 15px;
+      border-radius: 6px;
+      color: black;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .trip-item button {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      width: 45%; /* Ajustat per a que els botons es mostrin un al costat de l'altre */
+      margin-right: 10px;
+      display: inline-block;
+    }
+
+    .trip-item button:hover {
+      background-color: #0056b3;
+    }
+
+    .logo2 {
+      position: absolute;
+      bottom: 10px;
+      right: 20px;
+      width: 200px;
+      height: auto;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo de Skyscanner en la esquina inferior derecha -->
+  <img src="inlinewhite.svg" alt="Skyscanner2 Logo" class="logo2">
+
+  <div class="my-trips-container">
+    <h2>Els meus Viatges</h2>
+    <div id="myTripsList">
+      <!-- Els viatges als quals l'usuari està inscrit es carregaran aquí -->
+    </div>
+  </div>
+
+  <script>
+    // Exemple de viatges als quals l'usuari està inscrit
+    const myTrips = [
+      { name: "Viatge a Barcelona" },
+      { name: "Viatge a París"},
+      { name: "Acampada als Alps"},
+    ];
+
+    function loadMyTrips() {
+      const tripsContainer = document.getElementById("myTripsList");
+
+      if (myTrips.length === 0) {
+        tripsContainer.innerHTML = "<p>No estàs inscrit a cap viatge.</p>";
+      } else {
+        myTrips.forEach(trip => {
+          const tripItem = document.createElement('div');
+          tripItem.classList.add('trip-item');
+          tripItem.innerHTML = `
+            <strong>${trip.name} <br> </strong>
+            <button onclick="leaveTrip('${trip.name}')">Deixar Viatge</button>
+            <button onclick="manageTrip('${trip.name}')">Gestionar Viatge</button>
+          `;
+          tripsContainer.appendChild(tripItem);
+        });
+      }
+    }
+
+    // Funció per "deixar" un viatge
+    function leaveTrip(tripName) {
+      alert(`Has deixat el viatge: ${tripName}`);
+      // Aquí podries eliminar el viatge de l'array o fer una petició a l'API per eliminar la inscripció
+    }
+
+    // Funció per gestionar un viatge (per exemple, modificar les dates, afegir/desar coses, etc.)
+    function manageTrip(tripName) {
+      alert(`Gestionant el viatge: ${tripName}`);
+      // Aquí pots implementar la lògica per gestionar el viatge (editar, veure detalls, etc.)
+    }
+
+    // Carregar els viatges en carregar la pàgina
+    window.onload = loadMyTrips;
+  </script>
+
+</body>
+</html>
